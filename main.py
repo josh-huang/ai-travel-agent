@@ -1,7 +1,7 @@
 from __future__ import annotations
 import os
 from dotenv import load_dotenv
-from typing import Annotated, List
+from typing import Annotated, List, Any
 from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
 from langchain.chat_models import init_chat_model
@@ -25,14 +25,9 @@ llm = ChatOllama(model="gpt-oss:20b", validate_model_on_init=True)
 class State(TypedDict):
     messages: Annotated[list, add_messages]
     user_question: str | None
-    google_results: str | None
-    bing_results: str | None
-    reddit_results: str | None
-    selected_reddit_urls: list[str] | None
-    reddit_post_data: list | None
-    google_analysis: str | None
-    bing_analysis: str | None
-    reddit_analysis: str | None
+    trip_profile: dict[str, Any] | None
+    flight_quotes: list[dict[str, Any]] | None
+    hotel_quotes: list[dict[str, Any]] | None
     final_answer: str | None
 
 
